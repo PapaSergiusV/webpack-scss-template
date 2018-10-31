@@ -8,7 +8,7 @@ let conf = {
   output: {
     path: path.resolve(__dirname, "./dist"),
     filename: "main.js",
-    publicPath: "dist/"
+    publicPath: ""
   },
   devServer: {
     overlay: true,
@@ -34,7 +34,9 @@ let conf = {
   },
   plugins: [
     new ExtractTextPlugin(
-      {filename: 'style.css'}
+      {
+        filename: 'style.css'
+      }
     ),
     new HtmlWebpackPlugin({
       inject: false,
