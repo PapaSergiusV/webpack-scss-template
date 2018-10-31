@@ -1,6 +1,6 @@
 let path = require("path");
 
-module.exports = {
+let conf = {
   entry: "./src/js/index.js",
   output: {
     path: path.resolve(__dirname, "./dist"),
@@ -14,9 +14,17 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        loader: "babel-loader"
-        //exclude: "/node_modules/"
+        loader: "babel-loader",
+        exclude: "/node_modules/"
       }
     ]
   }
+}
+
+module.exports = (env, options) => {
+  let production = options.mode === "production";
+  conf.devtool = production
+    ? "source-map"
+    : "eval-sourcemap";
+  return conf;
 }
